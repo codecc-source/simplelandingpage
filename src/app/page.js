@@ -1,103 +1,163 @@
+"use client";
+
 import Image from "next/image";
+import { StarsBackground } from "./components/ui/stars-background";
+import { ShootingStars } from "./components/ui/shooting-stars";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Navbar from "./components/navbar";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isAnimating, setIsAnimating] = useState(false);
+  const router = useRouter();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const handleSunClick = () => { //clicking sun button sets state to true which starts the animation
+    setIsAnimating(true); //controls if the animation will run or not
+    setTimeout(() => {
+      router.push("/sun"); //redirects to sun page which is not setup yet
+    }, 3000);  //delay
+  };
+  return (
+    <div className="flex flex-col items-center pt-[120px] min-h-screen relative">      
+      <ShootingStars />
+      <StarsBackground />
+      <Navbar />
+      <p className="text-white text-[30px]">
+        Explore the Cosmos, One Click at a Time.
+      </p>
+      
+      <div className="flex justify-center items-center flex-wrap">
+      <button className="w-120 h-120 text-white rounded-full hover:scale-[1.3] hover:bg-[#FF8C00] transition-transform duration-200 ease-out ease-in shadow-[0_0_50px_#FF8C00]"
+       onClick={handleSunClick}>
+        <Image 
+            src={"/planets/earth.webp"} 
+            alt="sun" 
+            width={160} 
+            height={160}
+            priority 
+            className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-100 will-change-transform"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Sun
+      </button>
+      <button className="w-20 h-20 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="mercury" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Mercury
+      </button>
+      <button className="w-30 h-30 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="venus" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Venus
+      </button>
+      <button className="w-30 h-30 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="Earth" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Earth
+      </button>
+      <Image
+        src="/planets/still.webp" 
+        alt="venus" 
+        width={55} 
+        height={55}
+        priority 
+        className="object-cover"
+        />
+
+      <button className="w-20 h-20 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="mars" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Mars
+      </button>
+      <button className="w-70 h-70 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="jupiter" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Jupiter
+      </button>
+
+      <button className="w-60 h-60 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="saturn" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Saturn
+      </button>
+      <button className="w-45 h-45 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="uranus" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-125 will-change-transform"
+          />
+          Uranus
+      </button>
+      <button className="w-40 h-40 text-white rounded-full">
+        <Image 
+          src="/planets/earth.webp" 
+          alt="neptune" 
+          width={160} 
+          height={160}
+          priority 
+          className="w-full h-full object-cover rounded-full transition-transform duration-200 hover:scale-150 will-change-transform"
+          />
+          Neptune
+      </button>
+
+      <p className="pt-[60px] text-white text-[15px] text-center max-w-[50%]">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dictum sapien. Donec lobortis, nulla quis elementum vehicula, odio dui consequat elit, quis laoreet turpis mauris porta augue. Aliquam ut massa mi. Suspendisse quis elit at nisi tincidunt fringilla. Duis faucibus mauris nec mauris luctus, in sodales enim semper. Nullam egestas pulvinar nisl, eu aliquam leo. Donec semper lorem sed sodales pulvinar. Maecenas nec velit eu eros porta elementum ut et erat. Quisque fermentum ornare magna, at tempus ante blandit dapibus. In elementum lectus maximus enim dignissim rutrum. Curabitur malesuada, nisl et accumsan consequat, augue nibh sagittis justo, ut facilisis neque elit a mauris.
+      </p>
+
+      </div>
+      {isAnimating && ( //if isAnimating is true or if sun button is clicked, display the webp file
+        <div className="fixed inset-0 flex justify-center items-center z-50 opacity-90 transition-opacity">
+          <Image
+            src={"/planets/warp.webp"}
+            alt="Warp Effect"
+            layout="fill"
+            objectFit="cover"
+            className="w-full h-full"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
     </div>
   );
 }
+
+
+
+//homepage
